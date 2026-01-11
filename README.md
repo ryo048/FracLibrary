@@ -16,7 +16,9 @@ It provides a `Frac` class that supports:
 - Conversion of single fractions or arrays of fractions to decimal values
 - Comparison between fractions (Comparable<Frac> implemented)
 - Array operations (swapping, copying, sorting) that work seamlessly with java.util.Arrays
-- Multiplication operations use Math.multiplyExact to detect overflow and throw an exception if it occurs.
+
+Multiplication operations use Math.multiplyExact to detect overflow and throw an exception if it occurs.  
+Thanks to its immutable design, you can safely use it even in complex calculations.
 
 ## Example Usage
 
@@ -97,7 +99,8 @@ For details, please refet to the [LICENSE](./LICENSE) file in the repository.
 - 配列の入れ替え、複製
 - その他 `java.util.Arrays` を利用する配列操作
 
-乗算時には Math.multiplyExact を使用し、オーバーフローを検知して例外を投げます。
+乗算時には Math.multiplyExact を使用し、オーバーフローを検知して例外を投げます。   
+不変 (immutable) 設計なので、複雑な計算でも安心して利用できます。
 
 ## 使用例
 
