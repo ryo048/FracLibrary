@@ -1,10 +1,10 @@
-package FracLibrary;
+package program.FracLibrary;
 
-public class FracLibrary implements Comparable<FracLibrary>{
+public class Frac implements Comparable<Frac>{
 
     private long a; //numerator
     private long b; //denominator
-    public FracLibrary(long a, long b){ // a/b
+    public Frac(long a, long b){ // a/b
         if (b == 0) throw new IllegalArgumentException("Denominator cannot be zero.");
         this.a = a;
         this.b = b;
@@ -31,125 +31,125 @@ public class FracLibrary implements Comparable<FracLibrary>{
         return a;
     }
 
-    public static FracLibrary toFrac(long value){
-        return new FracLibrary(value, 1);
+    public static Frac toFrac(long value){
+        return new Frac(value, 1);
     }
 
-    public FracLibrary add(FracLibrary other){ //addition
-        if(other.b == this.b) return new FracLibrary(this.a + other.a, this.b);
+    public Frac add(Frac other){ //addition
+        if(other.b == this.b) return new Frac(this.a + other.a, this.b);
         long newA = Math.multiplyExact(this.a, other.b) + Math.multiplyExact(other.a, this.b);
         long newB = Math.multiplyExact(this.b, other.b);
-        return new FracLibrary(newA, newB);
+        return new Frac(newA, newB);
     }
 
-    public FracLibrary add(long other){ //addition
+    public Frac add(long other){ //addition
         return this.add(toFrac(other));
     }
 
-    public FracLibrary sub(FracLibrary other){ //subtraction
+    public Frac sub(Frac other){ //subtraction
         return this.add(other.negate());
     }
 
-    public FracLibrary sub(long other){ //subtraction
+    public Frac sub(long other){ //subtraction
         return this.sub(toFrac(other));
     }
 
-    public FracLibrary mul(FracLibrary other){ //multiplication
+    public Frac mul(Frac other){ //multiplication
         long newA = Math.multiplyExact(this.a, other.a);
         long newB = Math.multiplyExact(this.b, other.b);
-        return new FracLibrary(newA, newB);
+        return new Frac(newA, newB);
     }
 
-    public FracLibrary mul(long other){ //multiplication
+    public Frac mul(long other){ //multiplication
         return this.mul(toFrac(other));
     }
 
-    public FracLibrary div(FracLibrary other){ //division
+    public Frac div(Frac other){ //division
         if (other.a == 0) throw new ArithmeticException("Cannot divide by zero.");
         return this.mul(other.reciprocal());
     }
     
-    public FracLibrary div(long other){ //division
+    public Frac div(long other){ //division
         return this.div(toFrac(other));
     }
 
-    public FracLibrary max(FracLibrary other){ //maximum
+    public Frac max(Frac other){ //maximum
         return (this.compareTo(other) >= 0) ? this : other;
     }
 
-    public static FracLibrary max(FracLibrary[] fractions){ //maximum of list
-        FracLibrary max = fractions[0];
-        for(FracLibrary fraction : fractions){
+    public static Frac max(Frac[] fractions){ //maximum of list
+        Frac max = fractions[0];
+        for(Frac fraction : fractions){
             if(fraction.compareTo(max) > 0) max = fraction;
         }
         return max;
     }
 
-    public FracLibrary min(FracLibrary other){ //minimum
+    public Frac min(Frac other){ //minimum
         return (this.compareTo(other) <= 0) ? this : other;
     }
 
-    public static FracLibrary min(FracLibrary[] fractions){ //minimum of list
-        FracLibrary min = fractions[0];
-        for(FracLibrary fraction : fractions){
+    public static Frac min(Frac[] fractions){ //minimum of list
+        Frac min = fractions[0];
+        for(Frac fraction : fractions){
             if(fraction.compareTo(min) < 0) min = fraction;
         }
         return min;
     }
 
-    private static FracLibrary[] mapAll(FracLibrary[] fractions, java.util.function.Function<FracLibrary, FracLibrary> function){
-        FracLibrary[] temp = new FracLibrary[fractions.length];
+    private static Frac[] mapAll(Frac[] fractions, java.util.function.Function<Frac, Frac> function){
+        Frac[] temp = new Frac[fractions.length];
         for(int i = 0; i < fractions.length; i++) temp[i] = function.apply(fractions[i]);
         return temp;
     }
 
-    public static FracLibrary[] copyOf(FracLibrary[] fractions){
-        return mapAll(fractions, frac -> new FracLibrary(frac.a, frac.b));
+    public static Frac[] copyOf(Frac[] fractions){
+        return mapAll(fractions, frac -> new Frac(frac.a, frac.b));
     }
 
     public double toDecimal(){
         return (double)a / b;
     }
 
-    public static double[] toDecimalAll(FracLibrary[] fractions){
+    public static double[] toDecimalAll(Frac[] fractions){
         double[] temp = new double[fractions.length];
         for(int i = 0; i < fractions.length; i++) temp[i] = fractions[i].toDecimal();
         return temp;
     }
 
-    public FracLibrary negate(){
-        return new FracLibrary(-a, b);
+    public Frac negate(){
+        return new Frac(-a, b);
     }
 
-    public static FracLibrary[] negateAll(FracLibrary[] fractions){
+    public static Frac[] negateAll(Frac[] fractions){
         return mapAll(fractions, frac -> frac.negate());
     }
 
-    public static void swap(FracLibrary[] fractions, int i, int j){
-        FracLibrary temp = fractions[i];
+    public static void swap(Frac[] fractions, int i, int j){
+        Frac temp = fractions[i];
         fractions[i] = fractions[j];
         fractions[j] = temp;
     }
 
-    public FracLibrary reciprocal(){
+    public Frac reciprocal(){
         if(a == 0) throw new ArithmeticException("Cannot take reciprocal of zero.");
-        return new FracLibrary(b, a);
+        return new Frac(b, a);
     }
 
-    public static FracLibrary[] reciprocalAll(FracLibrary[] fractions){
+    public static Frac[] reciprocalAll(Frac[] fractions){
         return mapAll(fractions, frac -> frac.reciprocal());
     }
 
     @Override
-    public int compareTo(FracLibrary other){
+    public int compareTo(Frac other){
         return Long.compare(Math.multiplyExact(this.a, other.b), Math.multiplyExact(other.a, this.b));
     }
 
     @Override
     public boolean equals(Object object){
         if(this == object) return true;
-        if(!(object instanceof FracLibrary)) return false;
-        FracLibrary other = (FracLibrary) object;
+        if(!(object instanceof Frac)) return false;
+        Frac other = (Frac) object;
         return this.a == other.a && this.b == other.b;
     }
 
