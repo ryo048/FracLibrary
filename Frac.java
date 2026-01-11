@@ -1,4 +1,4 @@
-package program.FracLibrary;
+package library.fracLibrary;
 
 public class Frac implements Comparable<Frac>{
 
