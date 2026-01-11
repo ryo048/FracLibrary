@@ -3,7 +3,7 @@
 `FracLibrary` is a Java library for working with fractions.  
 With this library, you can easily perform arithmetic operations on fractions and manipulate arrays of fractions.
 
-*For more information on each feature, see **[Title](xxx.com)**.*
+*For more information on each feature, see **[Coming soon](github.com)**.*
 
 ## Overview
 
@@ -85,7 +85,7 @@ For details, please refet to the [LICENSE](./LICENSE) file in the repository.
 `FracLibrary` は、Javaで分数を扱えるようにするライブラリです。  
 このライブラリを使えば、分数の演算や配列操作を簡単に行うことができます。
 
-*各機能についての詳細は、 **[Title](xxx.com)** で確認できます。*
+*各機能についての詳細は、 **[準備中](github.com)** で確認できます。*
 
 ## 概要
 
